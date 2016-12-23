@@ -15,7 +15,7 @@
     "region": "{{user `region`}}",
     "source_ami": "ami-9398d3e0",
     "instance_type": "t2.large",
-    "ami_name": "respondent-home-v{{user `app_version`}} ({{isotime \"02-01-2006 15-04-05\"}})",
+    "ami_name": "respondent-home-v{{user `app_version`}} (built {{isotime \"02-01-2006 15-04-05\"}})",
     "ami_description": "ONS Respondent Home v{{user `app_version`}} ({{user `git_commit`}})",
     "ssh_username": "ec2-user",
     "subnet_id": "{{user `subnet_id`}}",
