@@ -20,5 +20,9 @@
     "ssh_username": "ec2-user",
     "subnet_id": "{{user `subnet_id`}}",
     "vpc_id": "{{user `vpc_id`}}"
+  }],
+  "provisioners": [{
+    "type": "shell",
+    "script": "bootstrap-chef.sh"
   }]
 }
