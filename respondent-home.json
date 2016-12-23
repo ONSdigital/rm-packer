@@ -1,5 +1,6 @@
 {
   "variables": {
+    "app_version": null,
     "aws_access_key": null,
     "aws_secret_key": null,
     "git_commit": "{{env `GIT_COMMIT`}}",
@@ -14,8 +15,8 @@
     "region": "{{user `region`}}",
     "source_ami": "ami-9398d3e0",
     "instance_type": "t2.large",
-    "ami_name": "respondent-home-v9.31.0 ({{timestamp}})",
-    "ami_description": "ONS Respondent Home v9.31.0 ({{user `git_commit`}})",
+    "ami_name": "respondent-home-v{{user `app_version`}} ({{timestamp}})",
+    "ami_description": "ONS Respondent Home v{{user `app_version`}} ({{user `git_commit`}})",
     "ssh_username": "ec2-user",
     "subnet_id": "{{user `subnet_id`}}",
     "vpc_id": "{{user `vpc_id`}}"
