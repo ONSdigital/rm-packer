@@ -24,5 +24,16 @@
   "provisioners": [{
     "type": "shell",
     "script": "bootstrap-chef.sh"
+  },
+  {
+    "type": "chef-client",
+    "server_url": "https://api.opscode.com/organizations/soapilot",
+    "chef_environment": "development",
+    "encrypted_data_bag_secret_path": "/etc/chef/encrypted_data_bag_secret",
+    "run_list": [
+      "recipe[aws-baseos]"
+    ],
+    "skip_install": true,
+    "validation_key_path": "/etc/chef/validation.pem"
   }]
 }
