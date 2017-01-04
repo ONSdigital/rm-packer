@@ -3,6 +3,7 @@
     "app_version": null,
     "aws_access_key": null,
     "aws_secret_key": null,
+    "chef_environment": null,
     "git_commit": "{{env `GIT_COMMIT`}}",
     "region": null,
     "subnet_id": null,
@@ -22,18 +23,22 @@
     "vpc_id": "{{user `vpc_id`}}"
   }],
   "provisioners": [{
-    "type": "shell",
-    "script": "bootstrap-chef.sh"
-  },
-  {
     "type": "chef-client",
     "server_url": "https://api.opscode.com/organizations/soapilot",
-    "chef_environment": "development",
+    "chef_environment": "{{user `chef_environment`}}",
     "encrypted_data_bag_secret_path": "/etc/chef/encrypted_data_bag_secret",
+    "install_command": "curl -L https://www.chef.io/chef/install.sh | {{if .Sudo}}sudo{{end}} bash -s -- -v 12.8.1",
     "run_list": [
       "recipe[aws-baseos]"
     ],
-    "skip_install": true,
+    "validation_client_name": "soapilot-validator",
     "validation_key_path": "/etc/chef/validation.pem"
+  },
+  {
+    "type": "shell",
+    "inline": [
+      "sudo rm /usr/bin/chef-client",
+      "sudo rm -rf /opt/chef"
+    ]
   }]
 }
