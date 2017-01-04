@@ -1,5 +1,5 @@
 # Packer Templates for Response Management and Respondent Home
-This repository contains [Packer](https://www.packer.io/) scripts for building [Response Management](https://github.com/ONSdigital/response-management-service) and [Respondent Home](https://github.com/ONSdigital/respondent-home-ui).
+This repository contains [Packer](https://www.packer.io/) scripts for building [Response Management](https://github.com/ONSdigital/response-management-service) and [Respondent Home](https://github.com/ONSdigital/respondent-home-ui). The Packer scripts create an Amazon Machine Image (AMI) which can be used to quickly launch EC2 instances containing a pre-built Response Management or Respondent Home. [Chef](https://chef.io/) is used by Packer as a provisioner to install and configure the application software within the AMI in a consistent and repeatable fashion.
 
 ## Prerequisites
 The Chef validation key (`validation.pem`) and encrypted data bag secret (`encrypted_data_bag_secret`) must be present on the machine on which Packer is running in the `/etc/chef` directory and be readable by the operating system account used to run Packer. Knife should be installed and configured on the machine on which Packer is running in order for Packer to be able to properly clean up the Chef node and client.
