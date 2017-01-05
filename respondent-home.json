@@ -30,7 +30,7 @@
     "encrypted_data_bag_secret_path": "/etc/chef/encrypted_data_bag_secret",
     "install_command": "curl -L https://www.chef.io/chef/install.sh | {{if .Sudo}}sudo{{end}} bash -s -- -v 12.8.1",
     "run_list": [
-      "recipe[aws-baseos]"
+      "recipe[aws-respondent-home-webserver]"
     ],
     "validation_client_name": "soapilot-validator",
     "validation_key_path": "/etc/chef/validation.pem"
