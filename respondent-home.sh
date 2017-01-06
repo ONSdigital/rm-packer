@@ -3,9 +3,9 @@
 # Script for running Packer to build the template so the Git commit SHA is
 # included in the AMI description.
 #
-# Usage: build.sh
+# Usage: respondent-home.sh
 #
 # Author: John Topley (john.topley@ons.gov.uk)
 #
 export GIT_COMMIT=$(cd /home/centos/code/respondent-home-ui && git rev-parse --short HEAD)
-packer build -var-file=./variables.json ./respondent-home.json
+packer build -var-file=./aws-variables.json -var-file=./respondent-home/variables.json ./respondent-home/template.json
