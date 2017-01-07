@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-# Script for running Packer to build the template so the Git commit SHA is
-# included in the AMI description.
+# Script for running Packer to build the Respondent Home template so the Git
+# commit SHA is included in the AMI description.
 #
 # Usage: respondent-home.sh
 #

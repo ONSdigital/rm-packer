@@ -21,3 +21,8 @@ Create a file named `aws-variables.json` within the same directory as this READM
 Edit the path `/home/centos/code/respondent-home-ui` on the first line of `respondent-home.sh` to match the path to the Respondent Home Git repository on your machine so that the Git commit SHA can be stored in an environment variable ready for Packer to insert it into the AMI description. Build the AMI using:
 
   `./respondent-home.sh`
+
+## Building Response Operations
+Edit the path `/home/centos/code/response-management-ui` on the first line of `response-operations.sh` to match the path to the Response Management UI Git repository on your machine so that the Git commit SHA can be stored in an environment variable ready for Packer to insert it into the AMI description. Build the AMI using:
+
+  `./response-operations.sh`
