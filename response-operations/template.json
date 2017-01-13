@@ -17,7 +17,7 @@
     "source_ami": "ami-7abd0209",
     "instance_type": "t2.large",
     "ami_name": "response-operations-v{{user `app_version`}} (built {{isotime \"02-01-2006 15-04-05\"}})",
-    "ami_description": "ONS Response Operations v{{user `app_version`}} ({{user `git_commit`}})",
+    "ami_description": "ONS Response Operations v{{user `app_version`}} (commit: {{user `git_commit`}}, environment: {{user `chef_environment`}})",
     "ssh_pty": "true",
     "ssh_username": "centos",
     "subnet_id": "{{user `subnet_id`}}",
