@@ -19,7 +19,7 @@ Create a file named `aws-variables.json` within the same directory as this READM
 ```
 
 ## Building Base OS
-A Packer template is included for building a CentOS 7 base OS stack that includes some `/etc/hosts` entries. This AMI is used as the source AMI by the other templates. Accordingly its AMI ID must be specified in the `aws-variables.json` file described above. Build the Base OS AMI using:
+A Packer template is included for building a CentOS 7 base OS stack that includes some `/etc/hosts` entries required by the Chef cookbook used by the Response Management template. This AMI is used as the source AMI by the other templates. Accordingly its AMI ID must be specified in the `aws-variables.json` file described above. Build the Base OS AMI using:
 
   `./base-os.sh`
 
