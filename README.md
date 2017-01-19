@@ -4,7 +4,7 @@ This repository contains [Packer](https://www.packer.io/) templates for building
 ## Prerequisites
 The Chef validation key (`validation.pem`) and encrypted data bag secret (`encrypted_data_bag_secret`) must be present on the machine on which Packer is running in the `/etc/chef` directory and be readable by the operating system account used to run Packer. Knife should be installed and configured on the machine on which Packer is running in order for Packer to be able to properly clean up the Chef node and client.
 
-Create a file named `aws-variables.json` within the same directory as this README file. This is a file that provides Packer with values for the Chef environment (development, test, production etc.), AWS access key, secret key, region, subnet and VPC variables as shown below. Note that this file is ignored by Git.
+Create a file named `aws-variables.json` within the same directory as this README file. This is a file that provides Packer with values for the Chef environment (development, test, production etc.), AWS access key, secret key, region, source AMI, subnet and VPC variables as shown below. Note that this file is ignored by Git.
 
 ```json
 {
@@ -12,10 +12,16 @@ Create a file named `aws-variables.json` within the same directory as this READM
   "aws_secret_key": "...",
   "chef_environment": "...",
   "region": "eu-west-1",
+  "source_ami": "...",
   "subnet_id": "subnet-...",
   "vpc_id": "vpc-..."
 }
 ```
+
+## Building Base OS
+A Packer template is included for building a CentOS 7 base OS stack that includes some `/etc/hosts` entries. This AMI is used as the source AMI by the other templates. Accordingly its AMI ID must be specified in the `aws-variables.json` file described above. Build the Base OS AMI using:
+
+  `./base-os.sh`
 
 ## Building Respondent Home
 Edit the path `/home/centos/code/respondent-home-ui` on the first line of `respondent-home.sh` to match the path to the Respondent Home Git repository on your machine so that the Git commit SHA can be stored in an environment variable ready for Packer to insert it into the AMI description. Build the AMI using:

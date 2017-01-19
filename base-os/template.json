@@ -3,11 +3,8 @@
     "app_version": null,
     "aws_access_key": null,
     "aws_secret_key": null,
-    "chef_environment": null,
-    "git_commit": "{{env `RO_GIT_COMMIT`}}",
     "region": null,
     "subnet_id": null,
-    "source_ami": null,
     "vpc_id": null
   },
   "builders": [{
@@ -15,10 +12,10 @@
     "access_key": "{{user `aws_access_key`}}",
     "secret_key": "{{user `aws_secret_key`}}",
     "region": "{{user `region`}}",
-    "source_ami": "{{user `source_ami`}}",
+    "source_ami": "ami-7abd0209",
     "instance_type": "t2.large",
-    "ami_name": "response-operations-v{{user `app_version`}} (built {{isotime \"02-01-2006 15-04-05\"}})",
-    "ami_description": "ONS Response Operations v{{user `app_version`}} (commit: {{user `git_commit`}}, environment: {{user `chef_environment`}})",
+    "ami_name": "base-os-v{{user `app_version`}} (built {{isotime \"02-01-2006 15-04-05\"}})",
+    "ami_description": "ONS Base CentOS 7 AMI v{{user `app_version`}}",
     "ami_block_device_mappings": [
       {
         "device_name": "/dev/sda1",
@@ -40,7 +37,7 @@
     "encrypted_data_bag_secret_path": "/etc/chef/encrypted_data_bag_secret",
     "install_command": "curl -L https://www.chef.io/chef/install.sh | {{if .Sudo}}sudo{{end}} bash -s -- -v 12.8.1",
     "run_list": [
-      "recipe[aws-collect-webserver]"
+      "recipe[aws-baseos]"
     ],
     "validation_client_name": "soapilot-validator",
     "validation_key_path": "/etc/chef/validation.pem"

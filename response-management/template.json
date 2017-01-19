@@ -7,6 +7,7 @@
     "git_commit": "{{env `RM_GIT_COMMIT`}}",
     "region": null,
     "subnet_id": null,
+    "source_ami": null,
     "vpc_id": null
   },
   "builders": [{
@@ -14,7 +15,7 @@
     "access_key": "{{user `aws_access_key`}}",
     "secret_key": "{{user `aws_secret_key`}}",
     "region": "{{user `region`}}",
-    "source_ami": "ami-7abd0209",
+    "source_ami": "{{user `source_ami`}}",
     "instance_type": "t2.large",
     "ami_name": "response-management-v{{user `app_version`}} (built {{isotime \"02-01-2006 15-04-05\"}})",
     "ami_description": "ONS Response Management v{{user `app_version`}} (commit: {{user `git_commit`}}, environment: {{user `chef_environment`}})",
