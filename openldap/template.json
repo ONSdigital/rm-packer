@@ -1,0 +1,53 @@
+{
+  "variables": {
+    "app_version": null,
+    "aws_access_key": null,
+    "aws_secret_key": null,
+    "region": null,
+    "subnet_id": null,
+    "source_ami": null,
+    "vpc_id": null
+  },
+  "builders": [{
+    "type": "amazon-ebs",
+    "access_key": "{{user `aws_access_key`}}",
+    "secret_key": "{{user `aws_secret_key`}}",
+    "region": "{{user `region`}}",
+    "source_ami": "{{user `source_ami`}}",
+    "instance_type": "t2.medium",
+    "ami_name": "openldap-v{{user `app_version`}} (built {{isotime \"02-01-2006 15-04-05\"}})",
+    "ami_description": "ONS OpenLDAP AMI v{{user `app_version`}}",
+    "ami_block_device_mappings": [
+      {
+        "device_name": "/dev/sda1",
+        "delete_on_termination": true,
+        "encrypted": true,
+        "volume_size": 8,
+        "volume_type": "gp2"
+      }
+    ],
+    "ssh_pty": "true",
+    "ssh_username": "centos",
+    "subnet_id": "{{user `subnet_id`}}",
+    "vpc_id": "{{user `vpc_id`}}"
+  }],
+  "provisioners": [{
+    "type": "chef-client",
+    "server_url": "https://api.opscode.com/organizations/soapilot",
+    "chef_environment": "{{user `chef_environment`}}",
+    "encrypted_data_bag_secret_path": "/etc/chef/encrypted_data_bag_secret",
+    "install_command": "curl -L https://www.chef.io/chef/install.sh | {{if .Sudo}}sudo{{end}} bash -s -- -v 12.8.1",
+    "run_list": [
+      "recipe[aws-collect-ldap]"
+    ],
+    "validation_client_name": "soapilot-validator",
+    "validation_key_path": "/etc/chef/validation.pem"
+  },
+  {
+    "type": "shell",
+    "inline": [
+      "sudo rm /usr/bin/chef-client",
+      "sudo rm -rf /opt/chef"
+    ]
+  }]
+}
