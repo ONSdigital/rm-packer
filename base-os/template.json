@@ -12,7 +12,7 @@
     "access_key": "{{user `aws_access_key`}}",
     "secret_key": "{{user `aws_secret_key`}}",
     "region": "{{user `region`}}",
-    "source_ami": "ami-7abd0209",
+    "source_ami": "ami-3c2d704f",
     "instance_type": "t2.large",
     "ami_name": "base-os-v{{user `app_version`}} (built {{isotime \"02-01-2006 15-04-05\"}})",
     "ami_description": "ONS Base CentOS 7 AMI v{{user `app_version`}}",
