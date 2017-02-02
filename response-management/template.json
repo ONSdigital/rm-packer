@@ -19,6 +19,7 @@
     "instance_type": "t2.large",
     "ami_name": "response-management-v{{user `app_version`}} (built {{isotime \"02-01-2006 15-04-05\"}})",
     "ami_description": "ONS Response Management v{{user `app_version`}} (commit: {{user `git_commit`}}, environment: {{user `chef_environment`}})",
+    "encrypt_boot": true,
     "ami_block_device_mappings": [
       {
         "device_name": "/dev/sda1",

@@ -16,6 +16,7 @@
     "instance_type": "t2.large",
     "ami_name": "base-os-v{{user `app_version`}} (built {{isotime \"02-01-2006 15-04-05\"}})",
     "ami_description": "ONS Base CentOS 7 AMI v{{user `app_version`}}",
+    "encrypt_boot": true,
     "ami_block_device_mappings": [
       {
         "device_name": "/dev/sda1",

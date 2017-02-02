@@ -17,6 +17,7 @@
     "instance_type": "t2.medium",
     "ami_name": "openldap-v{{user `app_version`}} (built {{isotime \"02-01-2006 15-04-05\"}})",
     "ami_description": "ONS OpenLDAP AMI v{{user `app_version`}}",
+    "encrypt_boot": true,
     "ami_block_device_mappings": [
       {
         "device_name": "/dev/sda1",
