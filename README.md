@@ -11,7 +11,7 @@ This repository contains [Packer](https://www.packer.io/) templates for building
 The Packer templates create an Amazon Machine Image (AMI) that can be used to quickly launch EC2 instances containing one of the pre-built stacks listed above. [Chef](https://chef.io/) is used by Packer as a provisioner to install and configure the application software within the AMI in a consistent and repeatable fashion.
 
 ## Prerequisites
-The Chef validation key (`validation.pem`) and encrypted data bag secret (`encrypted_data_bag_secret`) must be present on the machine on which Packer is running in the `/etc/chef` directory and be readable by the operating system account used to run Packer. Knife should be installed and configured on the machine on which Packer is running in order for Packer to be able to properly clean up the Chef node and client.
+The Chef validation key (`validation.pem`) and encrypted data bag secret (`encrypted_data_bag_secret`) must be present on the machine on which Packer is running in the `/etc/chef` directory and be readable by the operating system account used to run Packer. [Knife](https://docs.chef.io/knife.html) should be installed and configured on the machine on which Packer is running in order for Packer to be able to properly clean up the Chef node and client.
 
 Create a file named `aws-variables.json` within the same directory as this README file. This is a file that provides Packer with values for the Chef environment (development, test, production etc.), AWS access key, secret key, region, source AMI, subnet and VPC variables as shown below. Note that this file is ignored by Git.
 
