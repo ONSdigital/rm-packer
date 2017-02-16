@@ -48,7 +48,7 @@ A Packer template is included for building an OpenLDAP stack pre-populated with 
   `./openldap.sh`
 
 ## Building SSH Bastion
-A Packer template is included for building an SSH bastion host. Build the SSH bastion AMI using:
+A Packer template is included for building an SSH bastion host that includes a PostgreSQL client and a Ruby script for creating samples within Response Management. Build the SSH bastion AMI using:
 
   `./ssh-bastion.sh`
 
