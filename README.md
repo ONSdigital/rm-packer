@@ -6,6 +6,7 @@ This repository contains [Packer](https://www.packer.io/) templates for building
 * [Respondent Home](https://github.com/ONSdigital/respondent-home-ui)
 * A populated OpenLDAP server
 * An SSH bastion host
+* A support client host
 * A base CentOS 7 operating system stack
 
 The Packer templates create an Amazon Machine Image (AMI) that can be used to quickly launch EC2 instances containing one of the pre-built stacks listed above. [Chef](https://chef.io/) is used by Packer as a provisioner to install and configure the application software within the AMI in a consistent and repeatable fashion.
@@ -48,9 +49,14 @@ A Packer template is included for building an OpenLDAP stack pre-populated with 
   `./openldap.sh`
 
 ## Building SSH Bastion
-A Packer template is included for building an SSH bastion host that includes a PostgreSQL client and a Ruby script for creating samples within Response Management. Build the SSH bastion AMI using:
+A Packer template is included for building an SSH bastion host. Build the SSH bastion AMI using:
 
   `./ssh-bastion.sh`
+
+## Building Support Client
+A Packer template is included for building a support client host that includes a PostgreSQL client and a Ruby script for creating samples within Response Management. Build the support client AMI using:
+
+  `./support-client.sh`
 
 ## Building Base OS
 A Packer template is included for building a CentOS 7 base OS stack that includes some `/etc/hosts` entries required by some of the Chef cookbooks used by the templates above. This AMI is used as the source AMI by the other templates. Accordingly its AMI ID must be specified in the `aws-variables.json` file described above. Build the Base OS AMI using:
