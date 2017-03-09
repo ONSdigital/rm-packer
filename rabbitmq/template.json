@@ -32,14 +32,23 @@
     "subnet_id": "{{user `subnet_id`}}",
     "vpc_id": "{{user `vpc_id`}}"
   }],
-  "provisioners": [
-    {
-      "type": "file",
-      "source": "./files/rabbitmq.config",
-      "destination": "/tmp/rabbitmq.config"
-    },
-    {
-      "type": "shell",
-      "script": "install.sh"
-    }]
+  "provisioners": [{
+    "type": "chef-client",
+    "server_url": "https://api.opscode.com/organizations/soapilot",
+    "chef_environment": "{{user `chef_environment`}}",
+    "encrypted_data_bag_secret_path": "/etc/chef/encrypted_data_bag_secret",
+    "install_command": "curl -L https://www.chef.io/chef/install.sh | {{if .Sudo}}sudo{{end}} bash -s -- -v 12.8.1",
+    "run_list": [
+      "recipe[aws-baserabbitmq]"
+    ],
+    "validation_client_name": "soapilot-validator",
+    "validation_key_path": "/etc/chef/validation.pem"
+  },
+  {
+    "type": "shell",
+    "inline": [
+      "sudo rm /usr/bin/chef-client",
+      "sudo rm -rf /opt/chef"
+    ]
+  }]
 }
